@@ -106,6 +106,7 @@ public class DataLogicScannerConnection extends SimplePlcConnection {
 			return super.connect();
 
 		} catch (IOException e) {
+			notify(this.addressBarcode, NO_CONNECTION);
 			handleBrokenConnection(
 					"Failed to connect to " + this.address + ":" + this.port + ": " + getExceptionMessageWithCauses(e),
 					e);
@@ -189,6 +190,7 @@ public class DataLogicScannerConnection extends SimplePlcConnection {
 			}
 
 		} catch (IOException e) {
+			notify(this.addressBarcode, NO_CONNECTION);
 			handleBrokenConnection(
 					format("Failed to handle address {0} for {1}:{2}: {3}", address, this.address, this.port,
 							getExceptionMessageWithCauses(e)), e);
