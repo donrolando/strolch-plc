@@ -21,10 +21,7 @@ import li.strolch.utils.helper.AsciiHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.SocketTimeoutException;
+import java.net.*;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -262,7 +259,12 @@ public class DataLogicScannerConnection extends SimplePlcConnection {
 						notify(this.addressBarcode, NO_CONNECTION);
 						disconnect();
 					}
-				} else {
+				}
+				else if (e instanceof SocketException) {
+					notify(this.addressBarcode, NO_CONNECTION);
+					internalDisconnect();
+				}
+				else {
 					notify(this.addressBarcode, NO_CONNECTION);
 					internalDisconnect();
 					handleBrokenConnection(format("Failed to connect to {0}:{1}: {2}", this.address, this.port,

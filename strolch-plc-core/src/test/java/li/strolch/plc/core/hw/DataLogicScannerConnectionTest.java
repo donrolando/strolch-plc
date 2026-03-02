@@ -33,7 +33,7 @@ public class DataLogicScannerConnectionTest {
 	public static void main(String[] args) throws Exception {
 
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("address", "10.42.0.93:51236");
+		parameters.put("address", "10.42.0.191:51236");
 		parameters.put("readTimeout", 60);
 
 		Plc plc = new DefaultPlc();
@@ -56,7 +56,7 @@ public class DataLogicScannerConnectionTest {
 		scanner.send("test.trigger", true);
 		logger.info("Trigger sent.");
 
-		Thread.sleep(30000L);
+		Thread.sleep(5000L);
 
 		logger.info("Sending trigger...");
 		scanner.send("test.trigger", false);
